@@ -1,5 +1,12 @@
 const API_URL = import.meta.env.VITE_API_URL;
 
+useEffect(() => {
+    fetch(`${API}/productos`)
+        .then(res => res.json())
+        .then(data => setProductos(data))
+        .catch(err => console.error(err));
+}, []);
+
 export const api = {
     getProducts: async (categoria = '', busqueda = '') => {
         const params = new URLSearchParams();
