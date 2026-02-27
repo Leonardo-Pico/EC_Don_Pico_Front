@@ -2,11 +2,6 @@ const API_URL = import.meta.env.VITE_API_URL;
 console.log("ENV TEST:", import.meta.env);
 console.log("API_URL:", API_URL);
 
-useEffect(() => {
-    api.getProducts()
-        .then(data => setProductos(data))
-        .catch(err => console.error(err));
-}, []);
 
 export const api = {
     getProducts: async (categoria = '', busqueda = '') => {

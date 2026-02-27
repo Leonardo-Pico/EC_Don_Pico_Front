@@ -14,6 +14,12 @@ const formatearPrecio = (precio) => {
   })}`;
 };
 
+useEffect(() => {
+  api.getProducts()
+    .then(data => setProductos(data))
+    .catch(err => console.error(err));
+}, []);
+
 function App() {
   const [vista, setVista] = useState('tienda');
   const [productos, setProductos] = useState([]);
