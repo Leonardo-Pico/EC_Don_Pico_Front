@@ -2,8 +2,7 @@ const API_URL = import.meta.env.VITE_API_URL;
 console.log("API_URL:", API_URL);
 
 useEffect(() => {
-    fetch(`${API}/productos`)
-        .then(res => res.json())
+    api.getProducts()
         .then(data => setProductos(data))
         .catch(err => console.error(err));
 }, []);
