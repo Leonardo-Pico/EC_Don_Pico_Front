@@ -14,11 +14,6 @@ const formatearPrecio = (precio) => {
   })}`;
 };
 
-useEffect(() => {
-  api.getProducts()
-    .then(data => setProductos(data))
-    .catch(err => console.error(err));
-}, []);
 
 function App() {
   const [vista, setVista] = useState('tienda');
@@ -32,9 +27,21 @@ function App() {
   const [procesandoPago, setProcesandoPago] = useState(false);
   const [ordenConfirmada, setOrdenConfirmada] = useState(null);
 
+  //useEffect(() => {
+  //  cargarProductos();
+  //}, [categoriaActiva, busqueda]);
   useEffect(() => {
-    cargarProductos();
-  }, [categoriaActiva, busqueda]);
+    api.getProducts()
+      .then(data => {
+        setProductos(data);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error(err);
+        setError("Error cargando productos");
+        setLoading(false);
+      });
+  }, []);
 
   const cargarProductos = async () => {
     try {
